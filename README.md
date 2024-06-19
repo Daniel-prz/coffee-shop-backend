@@ -22,20 +22,48 @@ npm i nodemon --save-dev
 
 ### POST /products
 
-![alt text](<Screenshot 2024-06-17 222609.png>)
+![alt text](</public/Screenshot 2024-06-17 222609.png>)
 
 ### GET /products
 
-![alt text](<Screenshot 2024-06-17 222620.png>)
+![alt text](</public/Screenshot 2024-06-17 222620.png>)
 
 ### PUT /product/:productID
 
-![alt text](<Screenshot 2024-06-17 222816.png>)
+![alt text](</public/Screenshot 2024-06-17 222816.png>)
 
 ### GET /products/:productID
 
-![alt text](<Screenshot 2024-06-17 222839.png>)
+![alt text](</public/Screenshot 2024-06-17 222839.png>)
 
 ### Delete /products/:productID
 
-![alt text](<Screenshot 2024-06-17 222958.png>)
+![alt text](</public/Screenshot 2024-06-17 222958.png>)
+
+## Middleware and User Routes
+
+### Created src/middleware/
+
+- Added auth.js, json web token user authentication
+
+### /models
+
+- Added User model with bcryptjs password hashing
+
+### /routers
+
+- Added and exported user authentication routes POST /login and POST /register
+
+### Tested routes
+
+#### POST /register
+
+![alt text](</public/Screenshot 2024-06-18 221725.png>)
+
+#### POST /login
+
+![alt text](</public/Screenshot 2024-06-18 222840.png>)
+
+#### GET /products protected route
+
+![alt text](</public/Screenshot 2024-06-18 222956.png>)
