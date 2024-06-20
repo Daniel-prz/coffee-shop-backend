@@ -67,3 +67,33 @@ npm i nodemon --save-dev
 #### GET /products protected route
 
 ![alt text](</public/Screenshot 2024-06-18 222956.png>)
+
+### More routes
+
+#### Get all users ADMIN ONLY
+
+![alt text](</public/Screenshot 2024-06-20 022802.png>)
+
+#### Get User by ID
+
+![alt text](</public/Screenshot 2024-06-20 023152.png>)
+
+#### Update a User by ID
+
+![alt text](</public/Screenshot 2024-06-20 023248.png>)
+
+#### Delete a User by ID (Admin Only)
+
+![alt text](</public/Screenshot 2024-06-20 023421.png>)
+
+#### Get a Single Product by ID
+
+![alt text](</public/Screenshot 2024-06-20 024446.png>)
+
+#### Update a Product by ID
+
+![alt text](</public/Screenshot 2024-06-20 024534.png>)
+
+#### Delete a Product by ID
+
+![alt text](</public/Screenshot 2024-06-20 024547.png>)

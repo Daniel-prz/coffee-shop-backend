@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
+const auth = require("../../middleware/auth");
 
 // Register a new user
 
@@ -20,7 +21,8 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const email = req.body.email;
+    const password = req.body.password;
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({ error: "Invalid email or password" });
@@ -31,7 +33,7 @@ router.post("/login", async (req, res) => {
     }
     const token = jwt.sign(
       { userId: user._id, role: user.role },
-      "your_jwt_secret",
+      process.env.SECRET,
       { expiresIn: "1h" }
     );
     res.json({ token });
@@ -39,5 +41,7 @@ router.post("/login", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+
 
 module.exports = router;

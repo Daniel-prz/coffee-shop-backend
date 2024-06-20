@@ -5,9 +5,11 @@ const router = express.Router();
 
 router.get("/products", async (req, res) => {
   try {
-    const products = await Product.find();
+    const { category } = req.query;
+    const filter = category ? { category } : {};
+    const products = await Product.find(filter);
 
-    res.status(200).send(products);
+    res.status(200).json(products);
   } catch (error) {
     res.json({
       Message: "Error fetching products... try again or come back later",
