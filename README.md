@@ -97,3 +97,11 @@ npm i nodemon --save-dev
 #### Delete a Product by ID
 
 ![alt text](</public/Screenshot 2024-06-20 024547.png>)
+
+#### Post a product with an image
+
+![alt text](<Screenshot 2024-06-20 234446.png>)
+
+#### Get products with filter and pagination
+
+![alt text](<Screenshot 2024-06-20 234550.png>)
