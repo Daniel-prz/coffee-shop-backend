@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const app = express();
 const cors = require("cors");
-const path = require("path");
+
 const port = 3000;
 const uri = `mongodb+srv://dan84perez:${process.env.DB_USER_PASSWORD}@cluster0.23zswrn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 const productRouter = require("./src/controller/routers/productRouter.js");
@@ -21,14 +21,13 @@ app.use(cors());
 
 app.use(express.json());
 
-// SERVE STATIC FILES
-
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
 main().catch((error) => console.log(error));
 
 async function main() {
-  await mongoose.connect(uri);
+  await mongoose.connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
   console.log("Connected to MongoDB");
 }
 
