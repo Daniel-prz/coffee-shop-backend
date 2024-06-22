@@ -32,10 +32,9 @@ async function main() {
   console.log("Connected to MongoDB");
 }
 
-app.use(productRouter);
+app.use("/products", auth, productRouter);
 app.use(authRouter);
-app.use(userRouter);
-app.use(auth, productRouter);
+app.use("/users", auth, userRouter);
 
 app.use(errorHandler);
 

@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
-const jwt = require("jsonwebtoken");
-const auth = require("../../middleware/auth");
+
+
 
 // Get users (ADMIN ONLY)
-router.get("/users", auth, async (req, res) => {
+router.get("/", async (req, res) => {
   if (req.user.role !== "admin") {
     return res.status(403).json({ error: "Access denied." });
   }
@@ -19,7 +19,7 @@ router.get("/users", auth, async (req, res) => {
 
 
 // Get a single user by ID
-router.get('/users/:id', auth, async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     if (!user) {
@@ -32,7 +32,7 @@ router.get('/users/:id', auth, async (req, res) => {
 });
 
 // Update a user by ID
-router.put('/users/:id', auth, async (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
     const user = await User.findById(req.params.id);
@@ -55,7 +55,7 @@ router.put('/users/:id', auth, async (req, res) => {
 
 // Delete a user by ID (ADMIN ONLY)
 
-router.delete("/users/:id", auth, async (req, res) => {
+router.delete("/:id", async (req, res) => {
   if (req.body.role !== "admin") {
     return res.status(403).json({ error: "Access denied." });
   }
