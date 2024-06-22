@@ -7,7 +7,7 @@ const role = require("../../middleware/role");
 
 const router = express.Router();
 
-router.get("/products", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const {
       page = 1,
@@ -29,30 +29,24 @@ router.get("/products", async (req, res) => {
   }
 });
 
-router.post(
-  "/",
-  role("admin"),
-  upload,
-  validateProduct,
-  async (req, res) => {
-    try {
-      const { name, description, price, category, stock } = req.body;
-      const imageUrl = req.file.path;
-      const product = new Product({
-        name,
-        description,
-        price,
-        category,
-        stock,
-        imageUrl,
-      });
-      await product.save();
-      res.status(201).json(product);
-    } catch (error) {
-      res.status(400).json({ error: error.message });
-    }
+router.post("/", role("admin"), upload, validateProduct, async (req, res) => {
+  try {
+    const { name, description, price, category, stock } = req.body;
+    const imageUrl = req.file.path;
+    const product = new Product({
+      name,
+      description,
+      price,
+      category,
+      stock,
+      imageUrl,
+    });
+    await product.save();
+    res.status(201).json(product);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
   }
-);
+});
 router.get("/:productId", async (req, res) => {
   const productID = req.params.productId;
   const product = await Product.findById(productID);
