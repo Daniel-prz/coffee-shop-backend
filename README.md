@@ -100,8 +100,14 @@ npm i nodemon --save-dev
 
 #### Post a product with an image
 
-![alt text](<Screenshot 2024-06-20 234446.png>)
+![alt text](</public/Screenshot 2024-06-20 234446.png>)
 
 #### Get products with filter and pagination
 
-![alt text](<Screenshot 2024-06-20 234550.png>)
+![alt text](</public/Screenshot 2024-06-20 234550.png>)
+
+#### TEST DEPLOYED ROUTES
+
+![alt text](</public/Screenshot 2024-06-21 230755.png>)
+
+![alt text](</public/Screenshot 2024-06-21 234405.png>)

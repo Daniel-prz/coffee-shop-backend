@@ -29,9 +29,14 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", role("admin"), upload, validateProduct, async (req, res) => {
+router.post("/", upload, validateProduct, async (req, res) => {
   try {
-    const { name, description, price, category, stock } = req.body;
+    const name = req.body.name;
+    const description = req.body.description;
+    const price = req.body.price;
+    const category = req.body.category;
+    const stock = req.body.stock;
+
     const imageUrl = req.file.path;
     const product = new Product({
       name,
