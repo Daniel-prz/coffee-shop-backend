@@ -29,7 +29,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", upload, validateProduct, async (req, res) => {
+router.post("/", auth, upload, validateProduct, async (req, res) => {
   try {
     const name = req.body.name;
     const description = req.body.description;
@@ -58,7 +58,7 @@ router.get("/:productId", async (req, res) => {
   res.status(200).send(product);
 });
 
-router.put("/:productId", async (req, res) => {
+router.put("/:productId", auth, async (req, res) => {
   try {
     const productID = req.params.productId;
     const product = await Product.findByIdAndUpdate(productID, req.body);

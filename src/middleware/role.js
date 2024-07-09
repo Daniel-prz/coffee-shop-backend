@@ -1,6 +1,6 @@
 const role = (requiredRole) => {
   return (req, res, next) => {
-    if (requiredRole !== req.body.role) {
+    if (req.body.role.incluswa) {
       return res.status(403).json({ error: "Access denied." });
     }
     next();
