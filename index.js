@@ -34,7 +34,7 @@ async function main() {
 
 app.use("/products", productRouter);
 app.use(authRouter);
-app.use("/users", auth, userRouter);
+app.use("/users", userRouter);
 
 app.use(errorHandler);
 
