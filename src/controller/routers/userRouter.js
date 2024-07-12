@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const { findById } = require("../models/Product");
-
+const jwt = require("jsonwebtoken");
 // Get users (ADMIN ONLY)
 router.get("/", async (req, res) => {
   if (req.user.role !== "admin") {
