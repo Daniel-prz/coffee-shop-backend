@@ -9,11 +9,6 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-      const token = jwt.sign(
-        { userId: user._id, role: user.role },
-        process.env.SECRET,
-        { expiresIn: "1h" }
-      );
     const {
       page = 1,
       limit = 10,
@@ -33,8 +28,6 @@ router.get("/", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-
-
 
 router.post("/", auth, upload, validateProduct, async (req, res) => {
   try {
@@ -74,8 +67,6 @@ router.put("/:productId", auth, async (req, res) => {
     res.status(400).send(err.message);
   }
 });
-
-
 
 router.delete("/:productId", async (req, res) => {
   try {
