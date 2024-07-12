@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
-
-
+const { findById } = require("../models/Product");
 
 // Get users (ADMIN ONLY)
 router.get("/", async (req, res) => {
@@ -17,13 +16,28 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.post("/refresh", async (req, res) => {
+  try {
+    const oldToken = req.body.token;
+    const decoded = jwt.verify(oldToken, process.env.SECRET);
+    const user = await User.findById(decoded.userId);
+    const token = jwt.sign(
+      { userId: user._id, role: user.role },
+      process.env.SECRET,
+      { expiresIn: "1h" }
+    );
+    res.status(200).json({ token });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 // Get a single user by ID
-router.get('/:id', async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     if (!user) {
-      return res.status(404).json({ error: 'User not found' });
+      return res.status(404).json({ error: "User not found" });
     }
     res.json(user);
   } catch (error) {
@@ -32,12 +46,12 @@ router.get('/:id', async (req, res) => {
 });
 
 // Update a user by ID
-router.put('/:id', async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
     const user = await User.findById(req.params.id);
     if (!user) {
-      return res.status(404).json({ error: 'User not found' });
+      return res.status(404).json({ error: "User not found" });
     }
     if (name) user.name = name;
     if (email) user.email = email;
